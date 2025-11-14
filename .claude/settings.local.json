@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash(nul)",
+      "Bash(findstr:*)",
+      "Bash(setup_database.bat)",
+      "Bash(tree:*)",
+      "Bash(timeout 3 echo:*)",
+      "Bash(pip install:*)",
+      "Bash(timeout 5 echo:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(.gitignore)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

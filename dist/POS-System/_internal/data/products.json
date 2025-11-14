@@ -1,0 +1,332 @@
+[
+  {
+    "id": 1,
+    "name": "Coffee",
+    "price": 45.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 2,
+    "name": "Green Tea",
+    "price": 35.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 3,
+    "name": "Iced Latte",
+    "price": 55.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 4,
+    "name": "Orange Juice",
+    "price": 40.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 5,
+    "name": "Water",
+    "price": 20.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 6,
+    "name": "Sandwich",
+    "price": 65.00,
+    "category": "Food"
+  },
+  {
+    "id": 7,
+    "name": "Croissant",
+    "price": 55.00,
+    "category": "Food"
+  },
+  {
+    "id": 8,
+    "name": "Salad",
+    "price": 75.00,
+    "category": "Food"
+  },
+  {
+    "id": 9,
+    "name": "Burger",
+    "price": 85.00,
+    "category": "Food"
+  },
+  {
+    "id": 10,
+    "name": "Pizza Slice",
+    "price": 95.00,
+    "category": "Food"
+  },
+  {
+    "id": 11,
+    "name": "Chips",
+    "price": 25.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 12,
+    "name": "Cookie",
+    "price": 30.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 13,
+    "name": "Cappuccino",
+    "price": 50.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 14,
+    "name": "Espresso",
+    "price": 40.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 15,
+    "name": "Smoothie",
+    "price": 65.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 16,
+    "name": "Hot Chocolate",
+    "price": 48.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 17,
+    "name": "Iced Tea",
+    "price": 35.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 18,
+    "name": "Lemonade",
+    "price": 38.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 19,
+    "name": "Soda",
+    "price": 25.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 20,
+    "name": "Energy Drink",
+    "price": 55.00,
+    "category": "Beverages"
+  },
+  {
+    "id": 21,
+    "name": "Pasta Carbonara",
+    "price": 120.00,
+    "category": "Food"
+  },
+  {
+    "id": 22,
+    "name": "Spaghetti Bolognese",
+    "price": 115.00,
+    "category": "Food"
+  },
+  {
+    "id": 23,
+    "name": "Fried Rice",
+    "price": 85.00,
+    "category": "Food"
+  },
+  {
+    "id": 24,
+    "name": "Pad Thai",
+    "price": 95.00,
+    "category": "Food"
+  },
+  {
+    "id": 25,
+    "name": "Chicken Wings",
+    "price": 99.00,
+    "category": "Food"
+  },
+  {
+    "id": 26,
+    "name": "French Fries",
+    "price": 45.00,
+    "category": "Food"
+  },
+  {
+    "id": 27,
+    "name": "Onion Rings",
+    "price": 50.00,
+    "category": "Food"
+  },
+  {
+    "id": 28,
+    "name": "Caesar Salad",
+    "price": 80.00,
+    "category": "Food"
+  },
+  {
+    "id": 29,
+    "name": "Greek Salad",
+    "price": 85.00,
+    "category": "Food"
+  },
+  {
+    "id": 30,
+    "name": "Grilled Chicken",
+    "price": 135.00,
+    "category": "Food"
+  },
+  {
+    "id": 31,
+    "name": "Steak",
+    "price": 250.00,
+    "category": "Food"
+  },
+  {
+    "id": 32,
+    "name": "Fish & Chips",
+    "price": 145.00,
+    "category": "Food"
+  },
+  {
+    "id": 33,
+    "name": "Taco",
+    "price": 70.00,
+    "category": "Food"
+  },
+  {
+    "id": 34,
+    "name": "Burrito",
+    "price": 95.00,
+    "category": "Food"
+  },
+  {
+    "id": 35,
+    "name": "Quesadilla",
+    "price": 85.00,
+    "category": "Food"
+  },
+  {
+    "id": 36,
+    "name": "Chocolate Cake",
+    "price": 65.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 37,
+    "name": "Cheesecake",
+    "price": 75.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 38,
+    "name": "Ice Cream",
+    "price": 45.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 39,
+    "name": "Brownie",
+    "price": 55.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 40,
+    "name": "Tiramisu",
+    "price": 85.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 41,
+    "name": "Apple Pie",
+    "price": 60.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 42,
+    "name": "Donut",
+    "price": 35.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 43,
+    "name": "Muffin",
+    "price": 40.00,
+    "category": "Desserts"
+  },
+  {
+    "id": 44,
+    "name": "Pretzels",
+    "price": 28.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 45,
+    "name": "Popcorn",
+    "price": 35.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 46,
+    "name": "Nachos",
+    "price": 55.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 47,
+    "name": "Granola Bar",
+    "price": 30.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 48,
+    "name": "Chocolate Bar",
+    "price": 25.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 49,
+    "name": "Candy",
+    "price": 20.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 50,
+    "name": "Trail Mix",
+    "price": 45.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 51,
+    "name": "Protein Bar",
+    "price": 50.00,
+    "category": "Snacks"
+  },
+  {
+    "id": 52,
+    "name": "Yogurt",
+    "price": 35.00,
+    "category": "Dairy"
+  },
+  {
+    "id": 53,
+    "name": "Milk",
+    "price": 30.00,
+    "category": "Dairy"
+  },
+  {
+    "id": 54,
+    "name": "Cheese",
+    "price": 55.00,
+    "category": "Dairy"
+  },
+  {
+    "id": 55,
+    "name": "Butter",
+    "price": 45.00,
+    "category": "Dairy"
+  }
+]

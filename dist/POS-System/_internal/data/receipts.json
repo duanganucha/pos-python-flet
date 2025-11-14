@@ -1,0 +1,243 @@
+[
+  {
+    "date": "2025-11-13 12:15:59",
+    "items": [
+      {
+        "id": 3,
+        "name": "Iced Latte",
+        "price": 55.0,
+        "qty": 1,
+        "total": 55.0
+      },
+      {
+        "id": 2,
+        "name": "Green Tea",
+        "price": 35.0,
+        "qty": 1,
+        "total": 35.0
+      },
+      {
+        "id": 1,
+        "name": "Coffee",
+        "price": 45.0,
+        "qty": 1,
+        "total": 45.0
+      },
+      {
+        "id": 5,
+        "name": "Water",
+        "price": 20.0,
+        "qty": 1,
+        "total": 20.0
+      },
+      {
+        "id": 6,
+        "name": "Sandwich",
+        "price": 65.0,
+        "qty": 1,
+        "total": 65.0
+      },
+      {
+        "id": 9,
+        "name": "Burger",
+        "price": 85.0,
+        "qty": 1,
+        "total": 85.0
+      },
+      {
+        "id": 8,
+        "name": "Salad",
+        "price": 75.0,
+        "qty": 1,
+        "total": 75.0
+      },
+      {
+        "id": 12,
+        "name": "Cookie",
+        "price": 30.0,
+        "qty": 1,
+        "total": 30.0
+      }
+    ],
+    "total": 410.0
+  },
+  {
+    "date": "2025-11-13 12:16:08",
+    "items": [
+      {
+        "id": 3,
+        "name": "Iced Latte",
+        "price": 55.0,
+        "qty": 1,
+        "total": 55.0
+      },
+      {
+        "id": 2,
+        "name": "Green Tea",
+        "price": 35.0,
+        "qty": 1,
+        "total": 35.0
+      },
+      {
+        "id": 5,
+        "name": "Water",
+        "price": 20.0,
+        "qty": 2,
+        "total": 40.0
+      },
+      {
+        "id": 6,
+        "name": "Sandwich",
+        "price": 65.0,
+        "qty": 1,
+        "total": 65.0
+      },
+      {
+        "id": 9,
+        "name": "Burger",
+        "price": 85.0,
+        "qty": 1,
+        "total": 85.0
+      },
+      {
+        "id": 8,
+        "name": "Salad",
+        "price": 75.0,
+        "qty": 1,
+        "total": 75.0
+      },
+      {
+        "id": 7,
+        "name": "Croissant",
+        "price": 55.0,
+        "qty": 1,
+        "total": 55.0
+      },
+      {
+        "id": 4,
+        "name": "Orange Juice",
+        "price": 40.0,
+        "qty": 1,
+        "total": 40.0
+      }
+    ],
+    "total": 450.0
+  },
+  {
+    "date": "2025-11-13 12:18:40",
+    "items": [
+      {
+        "id": 4,
+        "name": "Orange Juice",
+        "price": 40.0,
+        "qty": 1,
+        "total": 40.0
+      },
+      {
+        "id": 3,
+        "name": "Iced Latte",
+        "price": 55.0,
+        "qty": 1,
+        "total": 55.0
+      },
+      {
+        "id": 7,
+        "name": "Croissant",
+        "price": 55.0,
+        "qty": 1,
+        "total": 55.0
+      },
+      {
+        "id": 8,
+        "name": "Salad",
+        "price": 75.0,
+        "qty": 1,
+        "total": 75.0
+      },
+      {
+        "id": 12,
+        "name": "Cookie",
+        "price": 30.0,
+        "qty": 1,
+        "total": 30.0
+      },
+      {
+        "id": 11,
+        "name": "Chips",
+        "price": 25.0,
+        "qty": 1,
+        "total": 25.0
+      },
+      {
+        "id": 10,
+        "name": "Pizza Slice",
+        "price": 95.0,
+        "qty": 1,
+        "total": 95.0
+      }
+    ],
+    "total": 375.0
+  },
+  {
+    "date": "2025-11-13 13:04:58",
+    "items": [
+      {
+        "id": 5,
+        "name": "Water",
+        "price": 20.0,
+        "category": "Beverages",
+        "qty": 5,
+        "total": 100.0
+      },
+      {
+        "id": 3,
+        "name": "Iced Latte",
+        "price": 55.0,
+        "category": "Beverages",
+        "qty": 4,
+        "total": 220.0
+      },
+      {
+        "id": 2,
+        "name": "Green Tea",
+        "price": 35.0,
+        "category": "Beverages",
+        "qty": 7,
+        "total": 245.0
+      },
+      {
+        "id": 1,
+        "name": "Coffee",
+        "price": 45.0,
+        "category": "Beverages",
+        "qty": 8,
+        "total": 360.0
+      },
+      {
+        "id": 10,
+        "name": "Pizza Slice",
+        "price": 95.0,
+        "category": "Food",
+        "qty": 4,
+        "total": 380.0
+      },
+      {
+        "id": 11,
+        "name": "Chips",
+        "price": 25.0,
+        "category": "Snacks",
+        "qty": 5,
+        "total": 125.0
+      },
+      {
+        "id": 12,
+        "name": "Cookie",
+        "price": 30.0,
+        "category": "Snacks",
+        "qty": 6,
+        "total": 180.0
+      }
+    ],
+    "total": 1610.0
+  }
+]
