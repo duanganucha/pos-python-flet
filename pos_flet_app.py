@@ -18,7 +18,8 @@ from src.views_flet import (
     MenuView,
     CategoryView,
     UsersView,
-    SettingsView
+    SettingsView,
+    TablesView
 )
 
 
@@ -143,6 +144,7 @@ class ChiliPOSApp:
                                 self.create_nav_button("history", "📋 History", ft.Colors.BLUE_700),
                                 self.create_nav_button("menu", "📦 Menu", ft.Colors.ORANGE_700),
                                 self.create_nav_button("category", "🏷️ Category", ft.Colors.PURPLE_700),
+                                self.create_nav_button("tables", "🍽️ Tables", ft.Colors.TEAL_700),
                                 self.create_nav_button("users", "👥 Users", ft.Colors.GREY_700),
                                 self.create_nav_button("settings", "⚙️ Settings", ft.Colors.GREY_800),
                             ],
@@ -229,6 +231,8 @@ class ChiliPOSApp:
                     btn.bgcolor = ft.Colors.ORANGE_700
                 elif "Category" in btn.content.value:
                     btn.bgcolor = ft.Colors.PURPLE_700
+                elif "Tables" in btn.content.value:
+                    btn.bgcolor = ft.Colors.TEAL_700
                 elif "Users" in btn.content.value:
                     btn.bgcolor = ft.Colors.GREY_700
                 elif "Settings" in btn.content.value:
@@ -242,6 +246,7 @@ class ChiliPOSApp:
             "history": HistoryView,
             "menu": MenuView,
             "category": CategoryView,
+            "tables": TablesView,
             "users": UsersView,
             "settings": SettingsView
         }
@@ -260,6 +265,11 @@ class ChiliPOSApp:
 
 def main(page: ft.Page):
     """Main entry point"""
+    # Maximize the window
+    page.window.maximized = True
+    page.window.min_width = 1024
+    page.window.min_height = 768
+
     app = ChiliPOSApp(page)
 
 

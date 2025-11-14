@@ -295,3 +295,60 @@ class DatabaseManager:
             })
 
         return products
+
+    def add_category(self, category_name: str) -> bool:
+        """
+        Add new category by creating a placeholder product
+        (Categories are derived from products table)
+        """
+        cursor = self.conn.cursor()
+
+        # Check if category already exists
+        cursor.execute("""
+            SELECT COUNT(*) FROM products WHERE category = ?
+        """, (category_name,))
+
+        if cursor.fetchone()[0] > 0:
+            return False  # Category already exists
+
+        # Add a placeholder product for this category
+        # This ensures the category appears in get_all_categories()
+        cursor.execute("""
+            INSERT INTO products (name, price, category)
+            VALUES (?, ?, ?)
+        """, (f"_placeholder_{category_name}", 0.0, category_name))
+
+        self.conn.commit()
+        return True
+
+    def update_category(self, old_category: str, new_category: str) -> bool:
+        """
+        Update category name - updates all products with this category
+        """
+        cursor = self.conn.cursor()
+
+        # Update all products with old category to new category
+        cursor.execute("""
+            UPDATE products
+            SET category = ?
+            WHERE category = ?
+        """, (new_category, old_category))
+
+        self.conn.commit()
+        return cursor.rowcount > 0
+
+    def delete_category(self, category_name: str, move_to_category: str = "อื่นๆ") -> bool:
+        """
+        Delete category by moving all products to another category
+        """
+        cursor = self.conn.cursor()
+
+        # Move all products to move_to_category
+        cursor.execute("""
+            UPDATE products
+            SET category = ?
+            WHERE category = ?
+        """, (move_to_category, category_name))
+
+        self.conn.commit()
+        return cursor.rowcount > 0

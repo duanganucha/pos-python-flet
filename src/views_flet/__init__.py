@@ -5,6 +5,7 @@ from .menu_view import MenuView
 from .category_view import CategoryView
 from .users_view import UsersView
 from .settings_view import SettingsView
+from .tables_view import TablesView
 
 __all__ = [
     'POSView',
@@ -12,5 +13,6 @@ __all__ = [
     'MenuView',
     'CategoryView',
     'UsersView',
-    'SettingsView'
+    'SettingsView',
+    'TablesView'
 ]

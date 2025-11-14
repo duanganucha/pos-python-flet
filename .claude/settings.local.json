@@ -12,7 +12,8 @@
       "Bash(timeout 5 echo:*)",
       "Bash(git push:*)",
       "Bash(git add:*)",
-      "Bash(.gitignore)"
+      "Bash(.gitignore)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

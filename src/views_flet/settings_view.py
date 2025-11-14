@@ -124,8 +124,17 @@ class SettingsView:
     def save_settings(self):
         """Save settings"""
         self.page.snack_bar = ft.SnackBar(
-            content=ft.Text("✅ บันทึกการตั้งค่าสำเร็จ"),
-            bgcolor=ft.Colors.GREEN_700
+            content=ft.Row(
+                [
+                    ft.Icon(ft.Icons.CHECK_CIRCLE, color=ft.Colors.WHITE, size=24),
+                    ft.Text("บันทึกการตั้งค่าสำเร็จ!", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE)
+                ],
+                spacing=10
+            ),
+            bgcolor=ft.Colors.GREEN_700,
+            duration=3000,
+            action="ปิด",
+            action_color=ft.Colors.WHITE
         )
         self.page.snack_bar.open = True
         self.page.update()

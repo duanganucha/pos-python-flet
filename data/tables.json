@@ -1,0 +1,79 @@
+[
+  {
+    "id": 11,
+    "number": 0,
+    "name": "กลับบ้าน",
+    "seats": 1,
+    "status": "available"
+  },
+  {
+    "id": 1,
+    "number": 1,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 1"
+  },
+  {
+    "id": 2,
+    "number": 2,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 2"
+  },
+  {
+    "id": 3,
+    "number": 3,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 3"
+  },
+  {
+    "id": 4,
+    "number": 4,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 4"
+  },
+  {
+    "id": 5,
+    "number": 5,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 5"
+  },
+  {
+    "id": 6,
+    "number": 6,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 6"
+  },
+  {
+    "id": 7,
+    "number": 7,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 7"
+  },
+  {
+    "id": 8,
+    "number": 8,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 8"
+  },
+  {
+    "id": 9,
+    "number": 9,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 9"
+  },
+  {
+    "id": 10,
+    "number": 10,
+    "seats": 4,
+    "status": "available",
+    "name": "โต๊ะ 10"
+  }
+]

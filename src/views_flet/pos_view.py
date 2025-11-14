@@ -22,6 +22,10 @@ class POSView:
         self.total_text = None
         self.product_grid = None
         self.search_field = None
+        self.table_number_text = None
+
+        # Table number state
+        self.selected_table = 4
 
     def create(self):
         """Create POS view layout"""
@@ -157,6 +161,37 @@ class POSView:
         """Create product card"""
         emoji = self.get_product_emoji(product)
 
+        # Get quantity in cart for this product
+        qty_in_cart = 0
+        for item in self.app.cart:
+            if item['id'] == product['id']:
+                qty_in_cart = item['qty']
+                break
+
+        # Create button content with or without quantity
+        if qty_in_cart > 0:
+            button_content = ft.Row(
+                [
+                    ft.Text("🛒 เพิ่มลงตะกร้า", size=13),
+                    ft.Container(
+                        content=ft.Text(
+                            str(qty_in_cart),
+                            size=11,
+                            weight=ft.FontWeight.BOLD,
+                            color=ft.Colors.WHITE
+                        ),
+                        bgcolor=ft.Colors.RED_700,
+                        border_radius=12,
+                        padding=ft.padding.symmetric(horizontal=8, vertical=3),
+                        alignment=ft.alignment.center
+                    )
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=8
+            )
+        else:
+            button_content = ft.Text("🛒 เพิ่มลงตะกร้า", size=13)
+
         return ft.Card(
             content=ft.Container(
                 content=ft.Column(
@@ -179,8 +214,6 @@ class POSView:
                             max_lines=2,
                             overflow=ft.TextOverflow.ELLIPSIS
                         ),
- 
-                       
 
                         # Price
                         ft.Text(
@@ -190,9 +223,9 @@ class POSView:
                             color=ft.Colors.GREEN_700
                         ),
 
-                        # Add to cart button
+                        # Add to cart button with quantity badge
                         ft.ElevatedButton(
-                            "🛒 เพิ่มลงตะกร้า",
+                            content=button_content,
                             bgcolor=ft.Colors.GREEN_700,
                             color=ft.Colors.WHITE,
                             width=200,
@@ -215,6 +248,14 @@ class POSView:
         self.tax_text = ft.Text("฿0.00", size=14)
         self.total_text = ft.Text("฿0.00", size=20, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_700)
 
+        # Table number text with ref
+        self.table_number_text = ft.Text(
+            f"โต๊ะ {self.selected_table}",
+            size=16,
+            weight=ft.FontWeight.BOLD,
+            color=ft.Colors.WHITE
+        )
+
         return ft.Container(
             content=ft.Column(
                 [
@@ -228,11 +269,21 @@ class POSView:
                                     weight=ft.FontWeight.BOLD,
                                     color=ft.Colors.WHITE
                                 ),
-                                ft.Text(
-                                    "โต๊ะ 4",
-                                    size=16,
-                                    weight=ft.FontWeight.BOLD,
-                                    color=ft.Colors.WHITE
+                                ft.Container(
+                                    content=ft.Row(
+                                        [
+                                            self.table_number_text,
+                                            ft.IconButton(
+                                                icon=ft.Icons.EDIT,
+                                                icon_color=ft.Colors.WHITE,
+                                                icon_size=18,
+                                                on_click=self.show_table_selector,
+                                                tooltip="เปลี่ยนโต๊ะ"
+                                            )
+                                        ],
+                                        spacing=5
+                                    ),
+                                    on_click=self.show_table_selector
                                 )
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
@@ -386,6 +437,8 @@ class POSView:
                 item['qty'] += 1
                 item['total'] = item['price'] * item['qty']
                 self.update_cart_display()
+                # Refresh product cards to show updated quantity
+                self.display_products()
                 return
 
         self.app.cart.append({
@@ -398,6 +451,8 @@ class POSView:
         })
 
         self.update_cart_display()
+        # Refresh product cards to show updated quantity
+        self.display_products()
 
     def update_cart_display(self):
         """Update cart display"""
@@ -411,25 +466,78 @@ class POSView:
             self.cart_list.controls.append(
                 ft.Card(
                     content=ft.Container(
-                        content=ft.Row(
+                        content=ft.Column(
                             [
-                                # Large emoji icon
-                                ft.Text(emoji, size=28),
-                                # Item details
-                                ft.Column(
+                                # Top row: emoji, name, price
+                                ft.Row(
                                     [
-                                        ft.Text(item['name'], size=13, weight=ft.FontWeight.BOLD),
-                                        ft.Text(f"฿{item['price']:.2f} × {item['qty']}", size=11, color=ft.Colors.GREY_700)
+                                        # Large emoji icon
+                                        ft.Text(emoji, size=28),
+                                        # Item details
+                                        ft.Column(
+                                            [
+                                                ft.Text(item['name'], size=13, weight=ft.FontWeight.BOLD),
+                                                ft.Text(f"฿{item['price']:.2f}", size=11, color=ft.Colors.GREY_700)
+                                            ],
+                                            spacing=2,
+                                            expand=True
+                                        ),
+                                        # Total price
+                                        ft.Text(f"฿{item['total']:.2f}", size=14, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_700)
                                     ],
-                                    spacing=2,
-                                    expand=True
+                                    alignment=ft.MainAxisAlignment.START,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    spacing=12
                                 ),
-                                # Total price
-                                ft.Text(f"฿{item['total']:.2f}", size=14, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_700)
+                                # Bottom row: quantity controls
+                                ft.Row(
+                                    [
+                                        # Decrease button
+                                        ft.IconButton(
+                                            icon=ft.Icons.REMOVE_CIRCLE,
+                                            icon_color=ft.Colors.RED_700,
+                                            icon_size=20,
+                                            on_click=lambda _, i=item: self.decrease_quantity(i),
+                                            tooltip="ลดจำนวน"
+                                        ),
+                                        # Quantity display
+                                        ft.Container(
+                                            content=ft.Text(
+                                                str(item['qty']),
+                                                size=14,
+                                                weight=ft.FontWeight.BOLD,
+                                                text_align=ft.TextAlign.CENTER
+                                            ),
+                                            width=40,
+                                            padding=5,
+                                            bgcolor=ft.Colors.GREY_100,
+                                            border_radius=5,
+                                            alignment=ft.alignment.center
+                                        ),
+                                        # Increase button
+                                        ft.IconButton(
+                                            icon=ft.Icons.ADD_CIRCLE,
+                                            icon_color=ft.Colors.GREEN_700,
+                                            icon_size=20,
+                                            on_click=lambda _, i=item: self.increase_quantity(i),
+                                            tooltip="เพิ่มจำนวน"
+                                        ),
+                                        ft.Container(expand=True),
+                                        # Delete button
+                                        ft.IconButton(
+                                            icon=ft.Icons.DELETE,
+                                            icon_color=ft.Colors.RED_400,
+                                            icon_size=20,
+                                            on_click=lambda _, i=item: self.remove_from_cart(i),
+                                            tooltip="ลบรายการ"
+                                        )
+                                    ],
+                                    alignment=ft.MainAxisAlignment.START,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    spacing=5
+                                )
                             ],
-                            alignment=ft.MainAxisAlignment.START,
-                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                            spacing=12
+                            spacing=8
                         ),
                         padding=12
                     )
@@ -449,14 +557,114 @@ class POSView:
 
         self.page.update()
 
+    def increase_quantity(self, item):
+        """Increase item quantity in cart"""
+        item['qty'] += 1
+        item['total'] = item['price'] * item['qty']
+        self.update_cart_display()
+        # Refresh product cards to show updated quantity
+        self.display_products()
+
+    def decrease_quantity(self, item):
+        """Decrease item quantity in cart"""
+        if item['qty'] > 1:
+            item['qty'] -= 1
+            item['total'] = item['price'] * item['qty']
+            self.update_cart_display()
+            # Refresh product cards to show updated quantity
+            self.display_products()
+        else:
+            # If quantity is 1, remove item from cart
+            self.remove_from_cart(item)
+
+    def remove_from_cart(self, item):
+        """Remove item from cart"""
+        self.app.cart.remove(item)
+        self.update_cart_display()
+        # Refresh product cards to remove quantity badge
+        self.display_products()
+
     def on_payment_method_change(self, e):
         """Handle payment method change"""
         self.app.payment_method = e.control.value
+
+    def show_table_selector(self, _=None):
+        """Show table number selector dialog"""
+        # Create table buttons (1-10)
+        table_buttons = []
+        for i in range(1, 11):
+            btn = ft.ElevatedButton(
+                content=ft.Text(f"โต๊ะ {i}", size=18, weight=ft.FontWeight.BOLD),
+                width=100,
+                height=80,
+                bgcolor=ft.Colors.GREEN_700 if i == self.selected_table else ft.Colors.BLUE_GREY_100,
+                color=ft.Colors.WHITE if i == self.selected_table else ft.Colors.BLACK,
+                on_click=lambda _, table_num=i: self.select_table(table_num)
+            )
+            table_buttons.append(btn)
+
+        # Create dialog
+        table_dialog = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("🍽️ เลือกหมายเลขโต๊ะ", size=24, weight=ft.FontWeight.BOLD),
+            content=ft.Container(
+                content=ft.Column(
+                    [
+                        # Grid of table buttons (2 columns)
+                        ft.Row([table_buttons[0], table_buttons[1]], spacing=10),
+                        ft.Row([table_buttons[2], table_buttons[3]], spacing=10),
+                        ft.Row([table_buttons[4], table_buttons[5]], spacing=10),
+                        ft.Row([table_buttons[6], table_buttons[7]], spacing=10),
+                        ft.Row([table_buttons[8], table_buttons[9]], spacing=10),
+                    ],
+                    spacing=10,
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER
+                ),
+                width=250,
+                height=450
+            ),
+            actions=[
+                ft.TextButton("ปิด", on_click=lambda _: self.close_dialog(table_dialog))
+            ],
+            actions_alignment=ft.MainAxisAlignment.END
+        )
+
+        # Store dialog reference
+        self.table_dialog = table_dialog
+        self.page.overlay.append(self.table_dialog)
+        self.table_dialog.open = True
+        self.page.update()
+
+    def select_table(self, table_number):
+        """Select table number"""
+        self.selected_table = table_number
+        self.table_number_text.value = f"โต๊ะ {self.selected_table}"
+
+        # Close dialog
+        self.table_dialog.open = False
+        self.page.update()
+
+        # Show success message
+        self.page.snack_bar = ft.SnackBar(
+            content=ft.Row(
+                [
+                    ft.Icon(ft.Icons.CHECK_CIRCLE, color=ft.Colors.WHITE, size=20),
+                    ft.Text(f"เลือกโต๊ะ {table_number} แล้ว", size=14, color=ft.Colors.WHITE)
+                ],
+                spacing=10
+            ),
+            bgcolor=ft.Colors.GREEN_700,
+            duration=2000
+        )
+        self.page.snack_bar.open = True
+        self.page.update()
 
     def clear_cart(self, e):
         """Clear cart"""
         self.app.cart.clear()
         self.update_cart_display()
+        # Refresh product cards to remove quantity badges
+        self.display_products()
 
     def checkout(self, e):
         """Process checkout - Show payment dialog"""
@@ -533,6 +741,8 @@ class POSView:
                 # Clear cart
                 self.app.cart.clear()
                 self.update_cart_display()
+                # Refresh product cards to remove quantity badges
+                self.display_products()
 
             except Exception as ex:
                 self.page.snack_bar = ft.SnackBar(
@@ -711,16 +921,29 @@ class POSView:
             ]),
             content=ft.Container(
                 content=ft.Column([
-                    # Receipt ID
-                    ft.Container(
-                        content=ft.Column([
-                            ft.Text("รหัสใบเสร็จ", size=12, color=ft.Colors.GREY_700),
-                            ft.Text(f"#{receipt_id}", size=20, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_700)
-                        ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-                        bgcolor=ft.Colors.GREEN_50,
-                        padding=10,
-                        border_radius=10
-                    ),
+                    # Receipt ID and Table Number
+                    ft.Row([
+                        ft.Container(
+                            content=ft.Column([
+                                ft.Text("รหัสใบเสร็จ", size=12, color=ft.Colors.GREY_700),
+                                ft.Text(f"#{receipt_id}", size=20, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_700)
+                            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                            bgcolor=ft.Colors.GREEN_50,
+                            padding=10,
+                            border_radius=10,
+                            expand=True
+                        ),
+                        ft.Container(
+                            content=ft.Column([
+                                ft.Text("โต๊ะ", size=12, color=ft.Colors.GREY_700),
+                                ft.Text(f"{self.selected_table}", size=20, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_700)
+                            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                            bgcolor=ft.Colors.BLUE_50,
+                            padding=10,
+                            border_radius=10,
+                            expand=True
+                        )
+                    ], spacing=10),
 
                     ft.Divider(),
 
@@ -796,6 +1019,7 @@ class POSView:
           🍽️ CHILI POS SYSTEM
 ========================================
 Receipt ID: #{receipt_id}
+Table: {self.selected_table}
 Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 Payment Method: {self.app.payment_method}
 ========================================

@@ -725,7 +725,7 @@ class POSFletApp:
                         bgcolor=ft.Colors.RED_400,
                         color=ft.Colors.WHITE,
                         expand=True,
-                        height=60
+                        height=40
                     )
                 elif num == "backspace":
                     btn = ft.ElevatedButton(
@@ -734,7 +734,7 @@ class POSFletApp:
                         bgcolor=ft.Colors.ORANGE_400,
                         color=ft.Colors.WHITE,
                         expand=True,
-                        height=60
+                        height=40
                     )
                 else:
                     btn = ft.ElevatedButton(
@@ -743,7 +743,7 @@ class POSFletApp:
                         bgcolor=ft.Colors.GREY_300,
                         color=ft.Colors.BLACK,
                         expand=True,
-                        height=60
+                        height=40
                     )
                 row_buttons.append(btn)
             numpad_buttons.append(ft.Row(row_buttons, spacing=10))
@@ -762,6 +762,7 @@ class POSFletApp:
         for label, amount in quick_amounts:
             btn = ft.OutlinedButton(
                 label,
+                 height=40
                 on_click=lambda e, a=amount: on_quick_amount(a),
                 style=ft.ButtonStyle(
                     color=ft.Colors.GREEN_700,
@@ -819,7 +820,7 @@ class POSFletApp:
                     ft.Text("ป้อนจำนวนเงิน", size=14, weight=ft.FontWeight.BOLD),
                     ft.Container(
                         content=ft.Column(numpad_buttons, spacing=10),
-                        padding=10,
+                        padding=4,
                         bgcolor=ft.Colors.GREY_50,
                         border_radius=10
                     )
